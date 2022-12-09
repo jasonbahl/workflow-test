@@ -1,8 +1,9 @@
 name: Sync Develop with Master after Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
 
 jobs:
   merge-master-back-to-dev:
