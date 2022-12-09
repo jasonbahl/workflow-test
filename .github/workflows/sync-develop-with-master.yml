@@ -6,12 +6,14 @@ on:
 
 jobs:
   sync-branch:
-    - uses: actions/checkout@master
+    - runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
 
-    - name: Merge master -> develop
-      uses: devmasx/merge-branch@master
-      with:
-        type: now
-        from_branch: master
-        target_branch: develop
-        github_token: ${{ github.token }}
+        - name: Merge master -> develop
+          uses: devmasx/merge-branch@master
+          with:
+            type: now
+            from_branch: master
+            target_branch: develop
+            github_token: ${{ github.token }}
