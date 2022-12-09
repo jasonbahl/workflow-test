@@ -5,11 +5,13 @@ on:
     types: [published]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          git checkout develop
-          git merge -X theirs master -m="Sync develop with master"
-          git push develop
+  sync-branch:
+    - uses: actions/checkout@master
+
+    - name: Merge master -> develop
+      uses: devmasx/merge-branch@master
+      with:
+        type: now
+        from_branch: master
+        target_branch: develop
+        github_token: ${{ github.token }}
