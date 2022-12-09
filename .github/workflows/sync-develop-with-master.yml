@@ -1,0 +1,17 @@
+name: Sync Develop with Master after Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          git checkout master
+          git pull
+          git checkout develop
+          git merge -X theirs master -m="Sync develop with master"
+          git push develop
