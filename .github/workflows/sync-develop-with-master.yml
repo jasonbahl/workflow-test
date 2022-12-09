@@ -12,7 +12,7 @@ jobs:
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout master
+          git checkout HEAD^
           git pull
           git checkout develop
           git merge -X theirs master -m="Sync develop with master"
